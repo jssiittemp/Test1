@@ -102,7 +102,7 @@ class Controller(Inference):
         ckpt_iter = ckpt_path.split('.')[0]
         config = read_json(config_path, return_obj=True)
         ckpt = torch.load(os.path.join(checkpoints_path, ckpt_path))
-        group_chunk = self.batch_utils.place_in_latent_dict[sub_group_name if sub_group_name is not 'expression_q' else 'expression']
+        group_chunk = self.batch_utils.place_in_latent_dict[sub_group_name if sub_group_name != 'expression_q' else 'expression']
         group_latent_size = group_chunk[1] - group_chunk[0]
 
         _log.info('Init %s Controller...' % sub_group_name)
